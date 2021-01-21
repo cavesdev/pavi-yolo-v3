@@ -3,7 +3,7 @@
 API based around yolo-detection python package to process videos.
 
 For the API, the usage is as follows:
-- Specify any environment variables necessary. Defaults are:
+- Specify any environment variables necessary in .env file on the root directory. Defaults are:
   - `UPLOAD_FOLDER` = ./static/videos
   - `RESULT_FILE_PATH` = ./static/results  
   - `CONFIG_FILE` = ./helpers/config.json
