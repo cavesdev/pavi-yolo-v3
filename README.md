@@ -1,13 +1,28 @@
+# YOLOv3 processing API
+
+API based around yolo-detection python package to process videos.
+
+For the API, the usage is as follows:
+- Specify any environment variables necessary. Defaults are:
+  - `UPLOAD_FOLDER` = ./static/videos
+  - `RESULT_FILE_PATH` = ./static/results  
+  - `CONFIG_FILE` = ./helpers/config.json
+- Download the helper files mentioned below and specify their path in the configuration file.
+- Install the dependencies `pip install -r requirements.txt`
+- Run the Flask application `flask run` or `python3 app.py`
+
 # yolo-detection
 Python script using YOLOv3 algorithm and OpenCV to detect objects in images and video. 
 
-To get the helper files use the following commands:
+To get the recommended helper files use the following commands:
 
 ```shell script
-wget https://pjreddie.com/media/files/yolov3.weights
-wget https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg\?raw=true -O yolov3.cfg
-wget https://github.com/pjreddie/darknet/blob/master/data/coco.names\?raw=true -O coco.names
+curl -O https://pjreddie.com/media/files/yolov3.weights
+curl -O https://github.com/pjreddie/darknet/blob/master/cfg/yolov3-tiny.cfg\?raw=true
+curl -O https://github.com/pjreddie/darknet/blob/master/data/coco.names\?raw=true
 ```
+
+You can also find different YOLO versions available at [the author's website.](https://pjreddie.com/darknet/yolo/)
 
 To import the detectors:
 ```python
