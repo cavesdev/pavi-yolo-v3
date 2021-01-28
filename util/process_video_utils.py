@@ -70,3 +70,11 @@ def load_json_results(results_file):
         results = json.load(f)
 
     return results
+
+
+def cleanup_files(video_file, results_file):
+    if os.path.exists(video_file):
+        os.remove(video_file)
+    if os.path.exists(results_file):
+        os.remove(results_file)
+    return

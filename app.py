@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from util.process_video_utils import save_uploaded_video, process_video, load_json_results
+from util.process_video_utils import save_uploaded_video, process_video, load_json_results, cleanup_files
 
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER') or os.path.join('static', 'videos')
 RESULTS_FILE_PATH = os.getenv('RESULT_FILE_PATH') or os.path.join('static', 'results')
@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 @app.route('/process', methods=['POST'])
 def process():
-    video_path = save_uploaded_video(request.files, UPLOAD_FOLDER)
-    results_file = process_video(video_path, RESULTS_FILE_PATH, CONFIG_FILE)
-    return load_json_results(results_file)
+    video_file = save_uploaded_video(request.files, UPLOAD_FOLDER)
+    results_file = process_video(video_file, RESULTS_FILE_PATH, CONFIG_FILE)
+    results = load_json_results(results_file)
+    cleanup_files(video_file, results_file)
+    return results
